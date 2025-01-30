@@ -16,9 +16,5 @@ def webhook():
         print(f"Error: {e}")  # Log any errors
         return jsonify({"error": "Invalid request"}), 400
 
-# Ensure Gunicorn can detect the Flask app
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-
 # Expose the app variable for Gunicorn
-app = app
+app = app  # Make sure Gunicorn can find this
