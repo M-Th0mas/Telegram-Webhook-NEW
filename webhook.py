@@ -3,6 +3,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+# Keep-Alive Route
+@app.route(‘/‘)
+def home():
+    return “Webhook is running!”, 200
+
+# Webhook Route
 @app.route(‘/webhook’, methods=[‘POST’])
 def webhook():
     try:
@@ -21,5 +27,5 @@ def webhook():
 gunicorn_app = app
 
 if __name__ == “__main__”:
-    port = int(os.environ.get(“PORT”, 5000))  # Default to Railway-assigned port
+    port = int(os.environ.get(“PORT”, 5000))  # Use Railway-assigned port
     app.run(host=“0.0.0.0”, port=port)
