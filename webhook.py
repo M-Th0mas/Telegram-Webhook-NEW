@@ -17,4 +17,5 @@ def webhook():
         return jsonify({"error": "Invalid request"}), 400
 
 # Expose the app variable for Gunicorn
-app = app  # Make sure Gunicorn can find this
+if __name__  != "__main__":
+    gunicorn_app = app
